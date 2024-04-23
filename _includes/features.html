@@ -1,0 +1,366 @@
+
+<section>
+    <div class="container flex" style="align-items: normal;"  >
+        <div class="text " style="padding: 0 20px 20px 0;">
+
+            <h2><span class="special-text">Intelligent inference</span> for your infrastructure</h2>
+            <p>Meshery uses <a href="https://docs.meshery.io/concepts/logical/relationships">relationships</a> to map how interconnected components interact to each other.
+                <div class="button-para">
+                    <a href="https://docs.meshery.io/concepts/logical/relationships#types-of-relationships" class="highlight">See more examples</a>
+                </div>
+            </p>
+        </div>
+        <div class="tab-container" >
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab(event, 'edge')">Edge</button>
+            <button class="tablinks" onclick="openTab(event, 'hierarchical')">Hierarchical</button>
+            <button class="tablinks" onclick="openTab(event, 'sibling')">Sibling</button>
+          </div>
+        
+            {% include partials/relationships.html %}
+
+        
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container flex">
+        <div class="text ">
+
+            <h2><span class="special-text">Multi-cluster management</span> for Kubernetes and Clouds</h2>
+            <p>Span domains. Perform multi-cluster operations from a central console.</p>
+            <div class="button-para">
+                <a href="https://docs.meshery.io/guides/configuration-management" class="highlight">View Docs</a>
+            </div>
+        </div>
+        <div class="image flex" style="flex-flow: column wrap;">
+            <div align="center" style="margin-top: 3rem;">
+                <div style="display: flex;">
+                    <img src="/assets/images/screens/multi-cluster-management.gif" class="multi-cluster-img"
+                        alt="Multi-cluster Kubernetes Manager" style="height: 24rem;" loading="lazy" />
+                    <span>
+                <!-- <p style="font-size: 1rem;margin:0rem;padding:0rem;color:#666;font-style: italic;">(excerpt: patterns
+                            in-action)</p> -->
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container flex">
+        <div class="text ">
+
+            <h2>Manage your connections with <span class="special-text">Environments</span></h2>
+            <p> Environments make it easier for you to manage, share, and work with a collection of resources as a group, instead of dealing with all your Connections and Credentials on an individual basis.</p>
+            <div class="button-para">
+                <a href="https://docs.meshery.io/concepts/logical/environments" class="highlight">View Docs</a>
+            </div>
+        </div>
+        <div class="image flex" style="flex-flow: column wrap;">
+            <div align="center" style="margin-top: 3rem;">
+                <div style="display: flex;">
+                    <img src="/assets/images/features/environments.gif" class="multi-cluster-img"
+                        alt="Multi-cluster Kubernetes Manager" style="height: 20rem;" loading="lazy" />
+                    <span>
+                <!-- <p style="font-size: 1rem;margin:0rem;padding:0rem;color:#666;font-style: italic;">(excerpt: patterns
+                            in-action)</p> -->
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <h2>Organize project-based work with <span class="special-text">Workspaces</span></h2>
+            <p> Workspace let's you organize your work and serve as the central point of collaboration for you and your teams and a central point of access control to Environments and their resources.</p>
+            <div class="button-para">
+                <a href="https://docs.meshery.io/concepts/logical/workspaces" class="highlight">View Docs</a>
+            </div>
+        </div>
+        <div class="image flex" style="flex-flow: column wrap;">
+            <div align="center" style="margin-top: 3rem;">
+                <div style="display: flex;">
+                    <img src="/assets/images/features/workspace.gif" class="multi-cluster-img"
+                        alt="Multi-cluster Kubernetes Manager" style="height: 24rem;" loading="lazy" />
+                    <span>
+                <!-- <p style="font-size: 1rem;margin:0rem;padding:0rem;color:#666;font-style: italic;">(excerpt: patterns
+                            in-action)</p> -->
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container flex">
+        <div class="text ">
+
+            <h2>Manage infra performance with <span class="special-text">Performance Profiles</span></h2>
+            <p>Performance Profile is a new and improved way to save performance test configurations, schedule performance tests, etc.</p>
+            <div class="button-para">
+                <a href="https://docs.meshery.io/tasks/performance/managing-performance" class="highlight">View Docs</a>
+            </div>
+        </div>
+        <div class="image flex" style="flex-flow: column wrap;">
+            <div align="center" style="margin-top: 3rem;">
+                <div style="display: flex;">
+                    <img src="/assets/images/features/performance-metrics.gif" class="multi-cluster-img"
+                    alt="Multi-cluster Kubernetes Manager" style="height: 24rem;" loading="lazy" />
+                    <span>
+                <!-- <p style="font-size: 1rem;margin:0rem;padding:0rem;color:#666;font-style: italic;">(excerpt: patterns
+                            in-action)</p> -->
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% for features in site.data.features %}
+{% if features.type == 1 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <div style="display: flex;">
+                <img src="{{ features.logoLightMode }}" data-logo-for-light="{{ features.logoLightMode }}"
+                    data-logo-for-dark="{{ features.logoDarkMode }}" id="logo-dark-light"
+                    alt="{{ features.logoDescription}}" style="height: 4rem;" loading="lazy" />
+                <span>
+            </div>
+            <h2>{{ features.title }}</h2>
+            <p>{{ features.description }}</p>
+            <div class="button-para">
+                <a href="/catalog" class="highlight">View Catalog</a>
+            </div>
+        </div>
+        <div class="image flex" style="flex-flow: column wrap;">
+            <div align="center" style="margin-top: 3rem;">
+                <button id="video-modal" class="link recording-link" style="width:100%"><img
+                        src="{{ features.videoPoster }}" loading="lazy" class="screenshot"></button>
+                <p style="font-size: 1rem;margin:0rem;padding:0rem;color:#666;font-style: italic;">(excerpt: patterns
+                    in-action)</p>
+                {% include video-modal.html
+                title="Service Mesh Patterns"
+                video="assets/images/patterns/service-mesh-patterns-clip.mov" %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% elsif features.type == 2 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <h2>{{ features.title }}</span></h2>
+            <p> {{ features.description }}
+            </p>
+        </div>
+        <div class="image">
+            <a href="{{ features.image }}" data-fancybox="images" data-caption="{{ features.imageDescription }}">
+                <img class="screenshot" src="{{ features.image }}" alt="{{ features.imageDescription }}"
+                    loading="lazy" />
+            </a>
+        </div>
+    </div>
+</section>
+
+{% elsif features.type == 3 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <img src="{{ features.logo }}" style="max-width:30%;position:relative;float:left;
+                    margin-right:20px;margin-bottom: 10px;" alt="{{ features.imageDescription }}" loading="lazy" />
+            <h2>{{ features.title }}</h2>
+            <p>{{ features.description }}</p>
+        </div>
+        <div class="image flex">
+            <a style="width: 100%;" href="{{ features.image }}" data-fancybox="images"
+                data-caption="{{ features.imageDescription }}">
+                <img src="{{ features.image }}" alt="{{ features.imageDescription }}" class="screenshot"
+                    loading="lazy" />
+            </a>
+        </div>
+    </div>
+</section>
+
+{% elsif features.type == 4 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <h2>{{ features.title }}</h2>
+            <p>{{ features.description }}</p>
+        </div>
+        <div class="image flex">
+            <a style="width: 100%;" href="{{ features.image }}" data-fancybox="images"
+                data-caption="Webassembly based Envoy Filters">
+                <img src="{{ features.image }}" class="screenshot" loading="lazy" />
+            </a>
+        </div>
+    </div>
+</section>
+
+{% elsif features.type == 5 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <img src="{{ features.logo }}" style="max-width:30%;position:relative;float:left;
+                    margin-right:20px;margin-bottom: 10px;" alt="Unified policy engine" loading="lazy" />
+            <h2>{{ features.title }}</h2>
+            <p>{{ features.description }}</p>
+        </div>
+        <div class="image flex">
+            <a style="width: auto;" href="{{ features.image }}" data-fancybox="images">
+                <img src="{{ features.image }}" style="max-width:100%" alt="{{ features.imageDescription }}"
+                    loading="lazy" />
+            </a>
+        </div>
+    </div>
+</section>
+
+{% elsif features.type == 6 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <img src="{{ features.logo }}" style="max-width:20%;position:relative;float:left;
+                    margin-right:20px;margin-bottom: 10px;" loading="lazy" />
+            <h2>{{ features.title }}</h2>
+            <p>{{ features.description }}
+            <ul style="line-height: 1.5em;height: auto;text-align: left; color: var(--color-secondary-light)">
+                {% for listItem in features.list %}
+                <li>{{ listItem }}</li>
+                {% endfor %}
+            </ul>
+            </p>
+        </div>
+            <div class="container-slider">
+                <div class='img background-img'>
+                    <div class="overlay">
+                        <div class="gradient-box-after">After</div>
+                    </div>
+                </div>
+                <div class='img foreground-img'>
+                    <div class="overlay">
+                        <div class="gradient-box-before">Before</div>
+                    </div>
+                </div>
+                <input type="range" min="1" max="100" value="50" class="slider" name='slider' id="slider">
+                <div class='slider-button'></div>
+            </div>
+    </div>
+</section>
+
+{% elsif features.type == 7 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <h2>{{ features.title }}</h2>
+            <p>{{ features.description }}
+            <ul style="line-height: 1.5em;height: auto;text-align: left; color: var(--color-secondary-light)">
+                {% for listItem in features.list %}
+                <li>{{ listItem }}</li>
+                {% endfor %}
+            </ul>
+            </p>
+        </div>
+        <div class="image">
+            <a href="{{ features.imageURL }}" data-fancybox="images" data-caption="{{ features.imageDescription }}">
+                <img src="{{ features.image }}" alt="{{ features.imageDescription }}" class="screenshot"
+                    loading="lazy" />
+            </a>
+        </div>
+    </div>
+</section>
+
+{% elsif features.type == 8 %}
+<section>
+    <div class="container flex">
+        <div class="text ">
+            <h2>{{ features.title }}</h2>
+            <p>{{ features.description }}</p>
+        </div>
+        <div class="image flex">
+            <a style="width: auto;" href="{{ features.imageURL }}" data-fancybox="images"
+                data-caption="{{ features.imageDescription }}">
+                <img src="{{ features.image }}" style="max-width:100%" alt="{{ features.imageDescription }}"
+                    loading="lazy" />
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endfor %}
+<script>
+    window.onload = function() {
+    document.querySelector('.tab button.active').click();
+};
+    let timeOutId;
+    function openTab(evt, relationshipType) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        evt.currentTarget.className += " active";
+       // document.getElementById(relationshipType).style.display = "block";
+       clearTimeout(timeOutId);
+        displayRelationships(relationshipType)
+        
+      }
+      function displayRelationships(relationships) {
+    
+        let index = 0;
+        displayImages();
+        function displayImages() {
+            let i;
+            const images = document.getElementsByClassName(`${relationships}`);
+            for (i = 0; i < images.length; i++) {
+                images[i].style.display = "none";
+            }
+            index++;
+            if (index > images.length) {
+                index = 1;
+            }
+            images[index-1].style.display = "block";
+            timeOutId = setTimeout(displayImages, 3000); 
+        }
+      }
+    </script>
+    <style>
+    .tab {
+         
+    box-shadow: var(--box-shadow-primary) !important;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+        & button {
+            padding: .5em;
+            color:var(--color-secondary-dark);
+
+            &:hover{ 
+            background-color: #00d3a9;
+            color: white !important;
+            border-radius: .5rem;
+        }
+        }
+
+    }
+    .feature-section {
+        max-height: 300px;
+    }
+    .tab-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-basis: 40%;
+    }
+    </style>

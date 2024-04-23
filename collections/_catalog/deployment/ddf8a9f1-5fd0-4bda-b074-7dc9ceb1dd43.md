@@ -7,7 +7,7 @@ userAvatarURL: https://layer5.io/static/7b1f08e10d271cbfd963c7d435cf84ac/416c3/a
 type: Deployment
 compatibility: 
 patternId: ddf8a9f1-5fd0-4bda-b074-7dc9ceb1dd43
-image: /assets/images/patterns/service-mesh.svg
+image: https://raw.githubusercontent.com/layer5labs/meshery-extensions-packages/master/action-assets/design-assets/ddf8a9f1-5fd0-4bda-b074-7dc9ceb1dd43-light.png,https://raw.githubusercontent.com/layer5labs/meshery-extensions-packages/master/action-assets/design-assets/ddf8a9f1-5fd0-4bda-b074-7dc9ceb1dd43-dark.png
 patternInfo: |
   ""
 patternCaveats: |

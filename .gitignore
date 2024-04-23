@@ -10,3 +10,5 @@ _site
 .vscode/dryrun.log
 .vscode/settings.json
 .vscode/targets.log
+.jekyll-metadata
+assets/scripts/hub

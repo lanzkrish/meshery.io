@@ -8,9 +8,11 @@ on:
 jobs:
   UpdateCloudNativeCatalog:
     runs-on: ubuntu-22.04
+    outputs:
+      contentID: ${{ steps.update_catalog_patterns.outputs.contentID }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
       - name: Set env
@@ -19,11 +21,13 @@ jobs:
           echo "MESHERY_CATALOG_FILES_DIR=catalog" >> $GITHUB_ENV
       - name: Cleanup
         run: |
-          find $MESHERY_CATALOG_FILES_DIR ! -name 'index.html' -maxdepth 1 -type f -delete
+          find $MESHERY_CATALOG_FILES_DIR ! -name 'index.html' ! -name 'artifacthub-repo.yml' -maxdepth 1 -type f -delete
           cd ./collections/_catalog
           for dir in */; do find $dir -maxdepth 1 -type f -delete; done
           cd ../../
-      - name: Update Catalog Patterns
+      - id: update_catalog_patterns
+        name: Update Catalog Patterns
+        shell: bash
         if: ${{ success() }}
         run: |
           catalogPatterns=$(curl -sS "$MESHERY_CLOUD_BASE_URL/api/catalog/content/pattern" 2>./err.txt)
@@ -42,7 +46,37 @@ jobs:
             patternCaveats="$(jq -r .[$idx].catalog_data.pattern_caveats temp.json)"
             patternType="$(jq -r .[$idx].catalog_data.type temp.json)"
             patternName="$(jq -r .[$idx].name temp.json)"
+            patternFile="$(jq -r .[$idx].pattern_file temp.json)"
+            patternImageURL="$(jq -r .[$idx].catalog_data.imageURL temp.json)"
+            if [[ "$patternImageURL" == "null" || "$patternImageURL" == "" ]]; then
+                # set default snapshot url
+                patternImageURL="https://raw.githubusercontent.com/layer5labs/meshery-extensions-packages/master/action-assets/design-assets/$designId-light.png,https://raw.githubusercontent.com/layer5labs/meshery-extensions-packages/master/action-assets/design-assets/$designId-dark.png"
+            else 
+              url_type=$(jq -r ".[$idx].catalog_data.imageURL | type" temp.json)
+              if [[ $url_type == "array" ]]; then
+                  patternImageURL="$(jq -r ".[$idx].catalog_data.imageURL | join(\",\")" temp.json)"
+              fi
+              
+            fi
+            
+            echo "$patternImageURL"
+            echo "version: 1.0.0"
             compatibility=""
+            echo "contentID=$designId" >> $GITHUB_OUTPUT
+
+            # sets default
+            if [[ $patternType == "null" ]]; then
+              patternType="Deployment"
+            fi
+
+            # updates patternType by converting upper to lower case and switching spaces with hyphen
+            updatedPatternType=$(echo $patternType | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+            # check if directory doesn't exists; then create it
+            if [ ! -d "./collections/_catalog/"$updatedPatternType"" ]; then
+              echo "$updatedPatternType doesn't exist."
+              echo "Creating directory... $updatedPatternType"
+              mkdir "./collections/_catalog/"$updatedPatternType""
+            fi
 
             if [[ $patternInfo == "null" ]]; then
               patternInfo="\"\""
@@ -50,10 +84,6 @@ jobs:
 
             if [[ $patternCaveats == "null" ]]; then
               patternCaveats="\"\""
-            fi
-
-            if [[ $patternType == "null" ]]; then
-              patternType="Deployment"
             fi
 
             compatLength=$(jq -r ".[$idx].catalog_data.compatibility | length" temp.json)
@@ -64,10 +94,11 @@ jobs:
               "
               compatibility+="    - $(jq -r ".[$idx].catalog_data.compatibility[$compatIdx]" temp.json)"
             done
-
-            patternFile="$(jq -r .[$idx].pattern_file temp.json)"
             echo "$patternFile" > $MESHERY_CATALOG_FILES_DIR/$designId.yaml
-
+            services=$(yq '.services' $MESHERY_CATALOG_FILES_DIR/$designId.yaml 2>/dev/null)
+            if [[ $services == "null" || $services == "" ]]; then
+              patternImageURL="/assets/images/logos/service-mesh-pattern.svg"
+            fi
             userId=$(jq -r .[$idx].user_id temp.json)
             userInfo=$(curl -sS "$MESHERY_CLOUD_BASE_URL/api/identity/users/profile/$userId" 2>./err1.txt)
 
@@ -90,7 +121,7 @@ jobs:
           type: $patternType
           compatibility: $compatibility
           patternId: $designId
-          image: /assets/images/patterns/service-mesh.svg
+          image: $patternImageURL
           patternInfo: |
             $patternInfo
           patternCaveats: |
@@ -98,6 +129,14 @@ jobs:
           URL: 'https://raw.githubusercontent.com/meshery/meshery.io/master/$MESHERY_CATALOG_FILES_DIR/$designId.yaml'
           downloadLink: $designId.yaml
           ---" > ./collections/_catalog/"$(echo $patternType | tr '[:upper:]' '[:lower:]')"/$designId.md
+          curl -L \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GH_ACCESS_TOKEN }}" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          "https://api.github.com/repos/meshery/meshery.io/actions/workflows/meshmap.yml/dispatches" \
+          -d '{"ref":"master","inputs":{"contentID":"'$designId'","assetLocation":"'$patternImageURL'"}}'
+          
           done
           rm temp.json
           rm err.txt
@@ -125,7 +164,16 @@ jobs:
             filterCaveats="$(jq -r .[$idx].catalog_data.filter_caveats temp.json)"
             filterType="$(jq -r .[$idx].catalog_data.type temp.json)"
             filterName="$(jq -r .[$idx].name temp.json)"
+            filterImageURL="$(jq -r .[$idx].catalog_data.imageURL temp.json)"
+
             compatibility=""
+            echo "contentID=$designId" >> $GITHUB_OUTPUT
+            # check if directory doesn't exists; then create it
+            if [ ! -d "./collections/_catalog/"$(echo $filterType | tr '[:upper:]' '[:lower:]')"" ]; then
+              echo "$(echo $filterType | tr '[:upper:]' '[:lower:]') doesn't exist."
+              echo "Creating directory...$(echo $filterType | tr '[:upper:]' '[:lower:]')"
+              mkdir "./collections/_catalog/"$(echo $filterType | tr '[:upper:]' '[:lower:]')""
+            fi
 
             if [[ $filterInfo == "null" ]]; then
               filterInfo="\"\""

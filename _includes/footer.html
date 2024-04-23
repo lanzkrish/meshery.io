@@ -1,19 +1,5 @@
 <footer>
 	<div class="container">
-		{% if jekyll.environment == 'production' and
-		site.google_analytics_key != '' %}
-		<script>
-		  window.ga =
-			window.ga ||
-			function () {
-			  (ga.q = ga.q || []).push(arguments);
-			};
-		  ga.l = +new Date();
-		  ga("create", "{{ site.google_analytics_key }}", "auto");
-		  ga("send", "pageview");
-		</script>
-		<script async src="https://www.google-analytics.com/analytics.js"></script>
-		{% endif %}
 		<div class="footer-columns">
 			{% for column in site.data.footer %}
 			<ul class="footer-links">
@@ -135,13 +121,25 @@
 </script>
 <script type="text/javascript">
 	let toggleBtn = document.getElementById("mode-toggle-btn")
+	// console.log(document.body.classList);
+	// console.log(localStorage.getItem("mode"));
 	toggleBtn.onclick = setMode;
-	if (localStorage.getItem("mode")) setMode();
+	
+	if (localStorage.getItem("mode") === null) {
+    	localStorage.setItem("mode", "dark-mode");
+    }
+
+	const isDark = document.body.classList.contains("dark-mode");
+	const currentMode = localStorage.getItem("mode");
+	if (isDark ^ (currentMode === "dark-mode")) {
+		setMode();
+	}
+
 	function setMode() {
 		document.body.classList.toggle("dark-mode")
+		
 		let layer5Logos = document.querySelectorAll("#layer5-logo");
 		let allLogos = document.querySelectorAll("#logo-dark-light");
-		// console.log(allLogos)
 		if (document.body.classList.contains("dark-mode")) {
 			layer5Logos.forEach(e => e.src = '../assets/images/company-logo/layer5-dark-mode-logo.svg')
 			allLogos.forEach(e => e.src = e.dataset.logoForDark)
@@ -152,10 +150,14 @@
 		if (document.body.classList.contains("dark-mode")) {
 			localStorage.setItem("mode", "dark-mode")
 		} else {
-			localStorage.setItem("mode", "")
+			localStorage.setItem("mode", "light-mode")
 		}
+		document.dispatchEvent(new CustomEvent("themeChange",{
+			detail : {value : localStorage.getItem("mode")},
+			bubbles: true ,
+		}))
 	}
-
+	
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -168,7 +170,7 @@
       infinite: true,
       speed: 400,
       slidesToShow: 3,
-      slidesToScroll: 0.5,
+      slidesToScroll: 1,
       autoplay: true, // true
       autoplaySpeed: 1500,
       
@@ -196,7 +198,7 @@
           breakpoint: 800,
           settings: {
             slidesToShow: 1.5,
-            slidesToScroll: 0.5,
+            slidesToScroll: 1,
           }
         },
         {

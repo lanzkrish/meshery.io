@@ -6,7 +6,7 @@
 - name: Catalog
   link: /catalog
   new_window: false
-  external: false  
+  external: false 
 - name: Playground
   link: https://play.meshery.io
   new_window: true
@@ -17,6 +17,7 @@
 #   highlight: false
 #   subitems:
 - name: Community
+  link: https://meshery.io/community/
   submenu: true
   new_window: false
   highight: false
@@ -36,6 +37,11 @@
       new_window: false
       external: false
       img_src: /assets/images/nav-icons/Mail.svg
+    - name: Recognition
+      link: https://badges.layer5.io/
+      external: true
+      new_window: true
+      img_src: /assets/images/nav-icons/Recognition.svg
     - name: Discuss
       link: https://discuss.layer5.io
       new_window: true
@@ -60,35 +66,40 @@
   submenu: true
   highlight: false
   subitems:
-    - name: Cloud Native Catalog
-      link: /catalog
-      new_window: false
-      external: false
-      img_src: /assets/images/nav-icons/Cloud-Native.svg
     # - name: Service Mesh Interface
     #   link: /service-mesh-interface
     #   new_window: false
     #   external: false
     #   img_src: /assets/images/nav-icons/Service-Mesh.svg
-    - name: Talks and Presentations
-      link: /talks-and-presentations
-      new_window: false
-      external: false
-      img_src: /assets/images/nav-icons/Presentation.svg
-    # - name: Blog
-    #   link: /blog
+    # - name: Talks and Presentations
+    #   link: /talks-and-presentations
     #   new_window: false
     #   external: false
-    #   img_src: /assets/images/nav-icons/Blog.svg
+    #   img_src: /assets/images/nav-icons/Presentation.svg
+    - name: Blog
+      link: /blog
+      new_window: false
+      external: false
+      img_src: /assets/images/nav-icons/Blog.svg
+    - name: Extensions
+      link: /extensions
+      img_src: /assets/images/nav-icons/meshery-extensions.svg
+      new_window: false
+      external: false  
+    # - name: Cloud Native Catalog
+    #   link: /catalog
+    #   new_window: false
+    #   external: false
+    #   img_src: /assets/images/nav-icons/Cloud-Native.svg
     - name: Contributing
       link: https://docs.meshery.io/project/contributing
       new_window: true
       external: true
       img_src: /assets/images/nav-icons/Contribute.svg
     - name: Branding
-      link: https://layer5.io/brand#meshery
-      new_window: true
-      external: true
+      link: /brand
+      new_window: false
+      external: false
       img_src: /assets/images/nav-icons/meshery.svg
 # - name: Login
 #   link: /

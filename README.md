@@ -1,5 +1,5 @@
 <picture>
-  <p style="text-align:center;" align="center">
+  <p style="text-align: center;">
 <a href="https://layer5.io/meshery">
 <picture align="center">
 <source media="(prefers-color-scheme: dark)" srcset="./assets/images/logos/meshery-logo-dark-text-side.svg" width="70%" align="center" style="margin-bottom:20px;">
@@ -9,8 +9,9 @@
 
 <br/><br/></p>
 </picture>
- 
-# Meshery.io
+
+## Meshery.io
+
 <div align="center">
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/layer5/meshery.svg)](https://hub.docker.com/r/layer5/meshery-io)
@@ -26,7 +27,7 @@
 
 </div>
 
-<h2>Preview of <a href="https://meshery.io">Meshery.io</a> Website<h2>
+<h2>Preview of <a href="https://meshery.io">Meshery.io</a> Website</h2>
 
 ![Meshery.io website screenshot](assets/images/mesheryio_screenshot.png)
 _Visit [Meshery.io](https://meshery.io/) to learn more!_
@@ -38,6 +39,12 @@ Meshery is a self-service engineering platform - the open source, cloud native m
 For further information, refer to the [Meshery Docs](https://docs.meshery.io).
 
 <div>&nbsp;</div>
+
+## 💻Tech Stack
+
+![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 ## Join the Meshery community!
 
@@ -51,9 +58,9 @@ Our projects are community-built and welcome collaboration. 👍 Be sure to see 
 <p>MeshMates are experienced Layer5 community members, who will help you learn your way around, discover live projects and expand your community network. 
 Become a <b>Meshtee</b> today!</p>
 
+<p>
 Find out more about the <a href="https://layer5.io/community#meshmate">Layer5 community</a>. <br />
 <br /><br /><br /><br />
-
 </p>
 <a href="https://slack.meshery.io">
 
@@ -102,10 +109,6 @@ Before contributing, please review the [Contribution Flow](https://github.com/me
   ```bash
   $ cd meshery.io
   ```
-- Install any Ruby dependencies
-  ```bash
-  $ bundle install
-  ```
 
 ### 3. Serve the site
 
@@ -113,11 +116,11 @@ Before contributing, please review the [Contribution Flow](https://github.com/me
   ```bash
   $ make site
   ```
-  _Note: From the Makefile, this command is actually running `$ bundle exec jekyll serve --drafts --livereload`_
+  _Note: From the Makefile, this command is actually running `$ bundle install; bundle exec jekyll serve --drafts --livereload`_
 
 ### 4. Create a Pull Request
 
-- After making changes, don't forget to commit with the sign-off flag (-s)!
+- After making changes, don't forget to commit with the sign-off flag (-s)
   ```bash
   $ git commit -s -m “my commit message w/signoff”
   ```
@@ -125,10 +128,19 @@ Before contributing, please review the [Contribution Flow](https://github.com/me
   ```bash
   $ git push origin <branch-name>
   ```
-- Then on Github, navigate to the [Meshery.io repository](https://github.com/meshery/meshery.io) and create a pull request from your recently pushed changes!
+- Then on Github, navigate to the [Meshery.io repository](https://github.com/meshery/meshery.io) and create a pull request from your recently pushed changes.
 
-                                                                                                   
+### Stargazers
+
+<p align="center">
+  <i>If you like Meshery, please <a href="../../stargazers">★</a> star this repository to show your support! 🤩</i>
+ <br />
+<a href="../../stargazers">
+ <img align="center" src="https://api.star-history.com/svg?repos=meshery/meshery.io&type=Date" />
+</a></p>
 
 #### License
 
 This repository and site are available as open source under the terms of the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0).
+
+[🔼Back to top](#mesheryio)

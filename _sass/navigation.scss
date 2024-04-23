@@ -22,9 +22,11 @@ nav {
 	flex-direction: row;
 	padding: 0 2vw;
 	justify-content: space-between;
+	align-items: center;
 }
 .stellarnav.desktop{
 	display: flex;
+	align-items: center;
 	justify-content: flex-end;
 }
 .stellarnav.mobile{
@@ -35,6 +37,7 @@ nav {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
+	align-items: center;
 	gap: 8px;
 	border-radius: 3px;
 }
@@ -42,7 +45,6 @@ nav {
 .nav-item:not(.has-sub) > a:not(.highlight).nav-text{
 	position: relative;
 	&:hover{
-		background-image: var(--background-grey);
 
 		&::after{
 		  width: 100%;
@@ -76,7 +78,6 @@ nav {
 .nav-mode-icon{
 
 	& > img {
-		padding: 0 !important;
 		margin-left: .5rem;
 		width: 2rem;
 		height: 2rem;
@@ -100,7 +101,7 @@ a.nav-text:hover {
 .menu-toggle {
 	color: var(--color-secondary-medium) !important;
 	& .bars span{
-		background-color:var(--color-grey-light) !important ;
+		background-color:var(--color-secondary-dark) !important ;
 	}
 }
 
@@ -117,17 +118,17 @@ a.nav-text:hover {
 
 	&.sublink-active{
 		&::after{
-			border-top: 6px solid var(--brand-color-secondary);
+			border-top: 6px solid;
 		}
 	}
 	&:hover{
-		background-image: var(--background-grey);
 	}
 }
 
 
 .stellarnav ul {
 	width:fit-content;
+	// margin-top: 0.5rem;
 	& ul{
   	border-radius: 5px;
 	background-color: var(--color-secondary-light);
@@ -199,6 +200,7 @@ a.nav-text:hover {
 	width:100%;
 	background-size: cover;
 	display: flex !important;
+	justify-content: space-between;
 	gap: 5px !important;
 }
 
@@ -243,6 +245,7 @@ a.nav-text:hover {
         position: absolute;
 		width: 100%;
 		left:0;
+		translate: 0 -5px;
 		background: transparent;
 		background-color: var(--color-primary-light);
 		max-height: 400px;
@@ -273,10 +276,13 @@ a.nav-text:hover {
 }
 
 @media screen and (max-width: 1140px)  {
-	.nav-mode-icon {
-		padding-top: 10px;
-	}
 	.project-name {
 		padding-top: 10px;
 	}
+}
+
+@media screen and (max-width: 839px) {
+    .nav-mode-icon {
+        // padding-top: 10px;
+    }
 }
